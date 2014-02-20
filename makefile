@@ -33,6 +33,23 @@ VPATH=$(BASEPATH)\
 all: $(ALL_PACKAGES)
 
 # libraries
+dependencies: go-nsq.a go-simplejson.a aws4.a aws.a s3.a
+
+# 	$(GOGET) github.com/bitly/go-nsq
+# 	$(GOGET) github.com/bmizerany/aws4
+# 	$(GOGET) launchpad.net/goamz/aws
+# 	$(GOGET) launchpad.net/goamz/s3
+# sudo pip install bzr
+
+
+🌋 204426@RnD-KapaL:streamtools ☯ go get launchpad.net/goamz/aws
+go: missing Bazaar command. See http://golang.org/s/gogetcmd
+package launchpad.net/goamz/aws: exec: "bzr": executable file not found in $PATH
+
+
+
+
+# libraries - old
 dependencies: nsq.a go-simplejson.a websocket.a
 
 nsq.a: command_test.go
@@ -57,6 +74,12 @@ websocket.go:
 
 
 # streams
+streamtools: go-simplejson.a blockfunctions.go
+	$(GOINSTALL) $(BUILDFLAGS) ./streamtools
+
+
+
+# streams - old
 http_to_streamtools: nsq.a http_to_streamtools.go
 	$(GOINSTALL) $(BUILDFLAGS) ./import/http_to_streamtools
 
